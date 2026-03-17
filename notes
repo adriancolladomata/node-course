@@ -1,0 +1,4 @@
+- Sistema de Módulos:
+    - .js -> Por defecto utiliza CommonJS
+    - .mjs -> Para utilizar ES Modules --- ¡El más recomendado y el que se debería de usar!
+    - .cjs -> Para utilizar CommonJS
