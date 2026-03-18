@@ -1,10 +1,10 @@
-import fs from 'node:fs';
+import fs from 'node:fs'
 
-const stats = fs.statSync('../notes');
+const stats = fs.statSync('../notes')
 
 console.log(
-    stats.isFile(),
-    stats.isDirectory(),
-    stats.isSymbolicLink(),
-    stats.size,
-);
+  stats.isFile(),
+  stats.isDirectory(),
+  stats.isSymbolicLink(),
+  stats.size
+)

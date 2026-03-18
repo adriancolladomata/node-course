@@ -2,3 +2,63 @@
     - .js -> Por defecto utiliza CommonJS
     - .mjs -> Para utilizar ES Modules --- ¡El más recomendado y el que se debería de usar!
     - .cjs -> Para utilizar CommonJS
+
+- Sincronía y Asincronía:
+    - Sincronía: Un proceso debe terminar para que otro pueda empezar a ejecutarse. No hay tiempo libre para el procesador de por medio.
+    - Asincronía Paralela: Mediante promises se realiza la ejecución de varios procesos a la vez, y, hasta que se temrinan, deja tiempo libre
+    para el procesador, y los muestra una vez han terminado ambos.
+    - Asincronía Callback: Comienza la ejecución del primer archivo, y sin importar el orden, comienza los siguientes, y muestra el archvio que haya
+    terminado antes, sin respetar orden ninguno.
+    - Asincronía Secuencial: Comienza la ejecución del primer archivo, y hasta que no está ejecutado, no comienza el siguiente, pero de mientras
+    deja libre para el resto de funciones.
+
+- Callback:
+
+    const doAsyncStuff = (numero1, numero2, callback) => {
+        const resultado = numero1 + numero 2
+        return setTimeout(() => {
+            callback(resultado)
+        }, 500)
+    }
+
+    doAsyncStuff(3, 3, (result) => {console.log(result)})
+
+- Promises: 
+
+    // Se realiza la promesa
+    const doAsyncStuffWithPromises = (numero1, numero2) {
+        const resultado = numero1 + numero2
+        return new Promise(resolve => {
+            setTimeout(() => {
+                resolve(resultado)
+            }, 500)
+        })
+    }
+
+    // La promesa está ejecutandose pero aún no está resuelta, ni nada la instancia.
+
+
+    1. => doAsyncStuffWithPromises(3, 3).then(result => console.log(result))
+    2. => const result = await doAsyncStuffWithPromises(3, 3)
+
+    // La promesa se muestra cuando está disponible y el .then o await la completan
+
+- Async/Await: 👉 “Si puede tardar, es async.”
+
+    const data = []
+
+    function getdata() {
+        return new Promise((resolve, reject) => {
+            if (data.length === 0) {
+                reject(new Error("Data is empty"))
+            }
+            setTimeout(() => {
+                resolve(data)
+            }, 2000)
+        })
+    }
+
+    async function fetchingData() {
+        const books = await getData()
+        console.log(books)
+    }

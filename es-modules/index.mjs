@@ -1,3 +1,3 @@
-import { sum } from './sum.mjs';
+import { sum } from './sum.mjs'
 
-console.log(sum(1, 5));
+console.log(sum(1, 5))
