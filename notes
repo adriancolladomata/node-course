@@ -1,3 +1,5 @@
+Si usamos node --watch y el archivo, solo con guardar y sin tener que cerrar, se actualizará la interfaz
+
 - Sistema de Módulos:
     - .js -> Por defecto utiliza CommonJS
     - .mjs -> Para utilizar ES Modules --- ¡El más recomendado y el que se debería de usar!
@@ -62,3 +64,27 @@
         const books = await getData()
         console.log(books)
     }
+
+- Versiones:
+    - X.Y.Z => Semantic version
+        1. X.Y.Z - X la MAYOR y es cuando se rompe la compa6tibilidad hacia atrás.
+        2. X.Y.Z - Y la MINOR u es cuando se añaden nuevas funcionalidades.
+        3. X.Y.Z - Z la PATCH y es cuando se arreglan bugs
+
+- HTTP (HyperText Transfer Protocol)
+    - Request (Petición enviada desde un dispositivo):
+        - url: http://localhost:1234/
+        - headers: Añade información complementaria de la url
+        - method: Puede ser por GET, POST, PUT...
+        - body: Van todos los datos que queremos transmitir
+    - Server (Envia una respuesta):
+        - statusCode: 200, 201, 300, 400, 404...
+            - 100 - 199: Respuestas informativas
+            - 200 - 299: Respuestas exitosas
+            - 300 - 399: Redirecciones
+            - 400 - 499: Errores del cliente
+            - 500 - 599: Errores del servidor
+        - headers: Añade información complementaria de la url
+        - body: Van todos los datos que queremos transmitir
+
+- HTTPS (HyperText Transfer Protocol Secure)
