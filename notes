@@ -1,4 +1,6 @@
 Si usamos node --watch y el archivo, solo con guardar y sin tener que cerrar, se actualizará la interfaz
+// Una alternativa es la dependencia nodemon. Es un poco mas lento y consume mas memoria, aunque es mucho mas potente y configurable. Instalar como dependencia de desarrollo
+mediante npm install nodemon -D
 
 - Sistema de Módulos:
     - .js -> Por defecto utiliza CommonJS
@@ -76,6 +78,16 @@ Si usamos node --watch y el archivo, solo con guardar y sin tener que cerrar, se
         - url: http://localhost:1234/
         - headers: Añade información complementaria de la url
         - method: Puede ser por GET, POST, PUT...
+            - GET: Para hacer una petición con la finalidad de recuperar datos
+            - HEAD: Igual que el GET, pero para realizar la peitición sin la necesidad del body. Se puede realizar como previo paso para ver que permisos tiene
+            un usuario: tokens, cookies, etc.
+            - POST: Crear un recurso
+            - PUT: Reemplazar/Modificar  un recurso ya existente
+            - DELETE: Eliminar los recursos
+            - CONNECT
+            - OPTIONS: Describe los recursos que hay en un path
+            - TRACE
+            - PATCH: Modifica parcialmente una parte de un recurso
         - body: Van todos los datos que queremos transmitir
     - Server (Envia una respuesta):
         - statusCode: 200, 201, 300, 400, 404...
@@ -88,3 +100,64 @@ Si usamos node --watch y el archivo, solo con guardar y sin tener que cerrar, se
         - body: Van todos los datos que queremos transmitir
 
 - HTTPS (HyperText Transfer Protocol Secure)
+
+- Buffer
+    - Almacena la memoria en un estado físico temporalmente donde se 
+    leen los datos en codigo binario para poder ser tratados
+    - Ejemplo (data): 
+        fs.readFile('./place.png', (err, data) => {
+        if (err) {
+            res.statusCode = 500
+            res.end('<h1>500 Internal Server error</h1>')
+        } else {
+            res.setHeader('Content-Type', 'image/png')
+            res.end(data)
+        }
+        })
+
+- Métodos:
+    - req.on(parameter1, callback): Método del objeto http.ClientRequest (que extiende EventEmitter), 
+    utilizado para escuchar eventos en una solicitud HTTP.
+        - req.on('data', chunk => {}): Se emite cuando se recibe un fragmento de datos (chunk).
+        - req.on('end', () => {}): Se emite cuando se han recibido todos los datos de la solicitud.
+        - req.on('error', () => {}): Se emite cuando ocurre un error en la solicitud.
+        - req.on('close', () => {}): Se emite cuando la solicitud se cierra, útil para liberar recursos.
+
+- Express:
+    - Es una dependencia de producción (Comando instalación: npm install express -E)
+    - Middleware: Función que se ejecuta entre el tiempo de ejecución y el de respuesta. 
+
+- REST API (Representational State Transfer) (Application Programming Interface):
+    - Es una arquitectura de software, no es un lenguaje ni una libreria ni nada.
+    - Hay muchas mas formas de hacer una API que no son REST API.
+    - Se basa en:  
+        - Simplicidad
+        - Escalabilidad
+        - Portabilidad 
+        - Fiabilidad
+        - Visibilidad
+        - Modificalidad
+    - Resources:
+        - En una arquitectura REST todo es considerado un recurso.
+            - Cada recurso se identifica con una url.
+    - Verbos HTTP:
+        - Para definir las operaciones que se pueden realizar con los recursos
+            - GET: Para hacer una petición con la finalidad de recuperar datos
+            - HEAD: Igual que el GET, pero para realizar la peitición sin la necesidad del body. Se puede realizar como previo paso para ver que permisos tiene
+            un usuario: tokens, cookies, etc.
+            - POST: Crear un recurso
+            - PUT: Reemplazar/Modificar  un recurso ya existente
+            - DELETE: Eliminar los recursos
+            - CONNECT
+            - OPTIONS: Describe los recursos que hay en un path
+            - TRACE
+            - PATCH: Modifica parcialmente una parte de un recurso
+    - Representaciones
+        - Los recursos pueden tener multiples representaciones.
+        - El cliente debería poder decidir la representación del recurso. (JSON, XML, HTML, etc...)
+    - Stateless
+        - El servidor no debe mantener ningun estado sobre el cliente entre la solicitud. Si no se cumple esto, se rmpen los principios de la REST API.
+        - El cliente debe enviar toda la información necesaria para procesar la request
+    - Interfaz Uniforme
+    - Separación de conceptos:
+        - Permite que el cliente  el servidor evolucionen de forma independiente.

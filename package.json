@@ -4,7 +4,8 @@
   "description": "Node course of midudev (+10h)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:3": "node --watch clase-2\\3.express.mjs"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/adriancolladomata/node-course#readme",
   "dependencies": {
+    "express": "5.2.1",
     "picocolors": "1.1.1"
   },
   "devDependencies": {

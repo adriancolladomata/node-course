@@ -1,0 +1,14 @@
+### Mostrar información del pokemon Ditto
+GET  http://localhost:1234/pokemon/ditto
+
+### Creación de un pokemon con inserción de body
+POST http://localhost:1234/pokemon
+Content-Type: application/json
+
+{
+  "name": "ditto",
+  "type": "normal",
+  "moves": [
+    "transform"
+  ]
+}
