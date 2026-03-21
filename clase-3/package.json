@@ -11,5 +11,8 @@
   "description": "",
   "dependencies": {
     "express": "5.2.1"
+  },
+  "devDependencies": {
+    "standard": "17.1.2"
   }
 }

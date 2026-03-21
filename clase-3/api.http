@@ -1,0 +1,8 @@
+### Recuperar todas las películas
+GET http://localhost:1234/movies
+
+### Recuperar una peĺicula por id
+GET http://localhost:1234/movies/241bf55d-b649-4109-af7c-0e6890ded3fc
+
+## Recuperar todas las películas por un género
+GET http://localhost:1234/movies/genre=Terror
