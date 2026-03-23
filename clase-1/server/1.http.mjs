@@ -1,6 +1,7 @@
 import http from 'node:http' // Protocolo HTTP
 import { findAvailablePort } from './2.free-port.mjs'
 
+// EN windows hay que poner en la terminal lo siguiente: $env:PORT=XXXX; node .\1.http.mjs
 const desiredPort = process.env.PORT ?? 3000
 
 const server = http.createServer((req, res) => {

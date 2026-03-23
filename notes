@@ -158,6 +158,28 @@ mediante npm install nodemon -D
     - Stateless
         - El servidor no debe mantener ningun estado sobre el cliente entre la solicitud. Si no se cumple esto, se rmpen los principios de la REST API.
         - El cliente debe enviar toda la información necesaria para procesar la request
-    - Interfaz Uniforme
+    - Interfaz Uniforme.
     - Separación de conceptos:
         - Permite que el cliente  el servidor evolucionen de forma independiente.
+
+- POST vs PUT vs PATCH.
+    - Idempotencia: Propiedad de realizar una acción determinada varias veces y aún así 
+    conseguir siempre el mismo resultado que se obtendría al hacerlo una vez.
+    - POST: Crea un nuevo elemento/recurso en el servidor.
+        - No es idempotente. Crea siempre un nuevo recurso.
+        - Ejemplo URL: /movies
+    - POST: Actualiza totalmente un elemento/recurso en el servidor o lo crea si no existe.
+        - Si es idempotente. El resultado siempre es el mismo, ya que trabaja con la misma id.
+        - Ejemplo: /movies/123-456-789
+    - PATCH: Actualiza parcialmente un elemento/recurso.
+        - Normalmente es idempotente, pero depende de, por ejemplo, un campo updatedAt. (También puede pasar en PUT pero no es común)
+        - Ejemplo: /movies/123-456-789
+
+- CORS (Cross-Origin Resource Sharing):
+    - El Error de Uso Compartido de Recursos entre Dominios es un error cuyo origen está en el backend, es decir, solo puede solucionarse en la parte de desarrollo
+    en el lado del servidor.
+    - Podemos ver el motivo en F12 -> Red -> Hover del error
+    - CORS segun los métodos HTTP:
+        - Métodos "Normales": GET/HEAD/POST
+        - Métodos "Complejos": PUT/PATCH/DELETE
+            - CORS Pre-Flight -> Requiere un verbo OPTIONS para poder realizar los métodos, es como una petición previa.

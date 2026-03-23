@@ -21,6 +21,7 @@ const processRequest = (req, res) => {
           let body = ''
 
           // Escuchar el evento data (chunk es un Buffer)
+          // req.on contiene: data (manejo de datos), end (finalización), error (manejo de errores) o close (cancelación de maner asíncrona)
           req.on('data', chunk => {
             body += chunk.toString()
           })

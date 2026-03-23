@@ -9,12 +9,12 @@ app.disable('x-powered-by')
 const PORT = process.env.PORT ?? 1234
 
 // Next es el middleware. Cuando terminemos de hacer la función
-// app.use((req, res, next) => {
-//   console.log('Mi primer middleware')
-//   // Trackear la request a la base de datos
-//   // Revisar si el usuario tiene cookies
-//   next() // MUY IMPORTANTE para que la request no se quede colgada
-// })
+app.use((req, res, next) => {
+  console.log('Mi primer middleware')
+  // Trackear la request a la base de datos
+  // Revisar si el usuario tiene cookies
+  next() // MUY IMPORTANTE para que la request no se quede colgada
+})
 
 app.use((req, res, next) => {
   if (req.method !== 'POST') return next()
@@ -35,6 +35,9 @@ app.use((req, res, next) => {
   })
 })
 
+// Todo lo anteriormente hecho es lo mismo que usar
+// ------> !!!! app.use(express.json())
+
 // Cada vez que reciba un get en la ruta / entonces ejecuta esta funcion:
 app.get('/pokemon/ditto', (req, res) => {
   res.json(pokemonDitto)
@@ -44,6 +47,7 @@ app.get('/pokemon/ditto', (req, res) => {
 
 app.post('/pokemon', (req, res) => {
   // Asigna el status a 201 (Created) y envía el body del request, que contiene los datos introducidos y tratados en el middleware
+  // req.body deberiamos guardarlo en la base de datos
   res.status(201).send(req.body)
 })
 
