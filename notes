@@ -183,3 +183,28 @@ mediante npm install nodemon -D
         - Métodos "Normales": GET/HEAD/POST
         - Métodos "Complejos": PUT/PATCH/DELETE
             - CORS Pre-Flight -> Requiere un verbo OPTIONS para poder realizar los métodos, es como una petición previa.
+
+- MVC (Modelo Vista-Controlador)
+    - Modelo: Representa la lógica del negocio, la infraestructura de datos, etc.
+        - Ejemplo: Se encarga de acceder a la base de datos, de actualizar la información correctamente, si la integridad de los datos es correcta...
+        - Podrían ser: MySQL, MongoDB, local...
+    - Controlador: Actúa como intermediario entre el modelo y la vista. 
+        - Ejemplo: Responde y trata a las entradas del usuario cada vez que este interactúa con la página.
+        Podrían ser: Node.js, PHP, Python...
+    - Vista: Permite al usuario interactuar mediante una interfaz gráfica. La vista es la UI (User Interface)
+        - Podrían ser React, Vue, Next.js, JSON...
+    - Proceso:
+        1. Iniciar (Controlador -> Vista)
+        2. Usar (Vista -> Controlador)
+        3. Leer/Modificar (Controlador -> Modelo)
+        0. Enviando los datos (Modelo -> Controlador)
+    - Las validaciones que hacemos en Modelo y Controlador son obligatorias, las que hacemos en vista son mejoras para la UX (User Experience)
+
+- Componentes de req:
+    - req.query: Contiene los parámetros de búsqueda en la URL (ej. ?id=1).
+    - req.body: Contiene los datos enviados en el cuerpo de la solicitud, usualmente en peticiones POST (necesita middleware como express.json()).
+    - req.params: Captura segmentos dinámicos de la ruta de la URL (ej. /usuario/:id).
+    - req.headers: Accede a las cabeceras HTTP recibidas.
+    - req.cookies: Accede a las cookies enviadas por el cliente.
+    - req.path: Contiene la ruta de la solicitud.
+    - req.ip: Obtiene la dirección IP del cliente. 
