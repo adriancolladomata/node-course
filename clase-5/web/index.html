@@ -6,53 +6,52 @@
   <title>Probar API Rest</title>
   <style>
     article {
-      border: 1px solid black;
+      border: 1px solid #ccc;
       padding: 1rem;
       margin-bottom: 1rem;
     }
+
     img {
       height: auto;
-      width: 300px;
+      width: 320px;
       max-width: 100%;
     }
   </style>
   <script type="module">
-      fetch('http://localhost:1234/movies')
-        .then(res => res.json())
-        .then(movies => {
-          const html = movies.map(movie => {
-            return `
-              <article data-id="${movie.id}">
-                <h2>${movie.title}</h2>
-                <img src="${movie.poster}" alt="${movie.title}">
-                <p>${movie.year}</p>
+    fetch('http://localhost:1234/movies')
+      .then(res => res.json())
+      .then(movies => {
+        const html = movies.map(movie => {
+          return `
+            <article data-id="${movie.id}">
+              <h2>${movie.title}</h2>
+              <img src="${movie.poster}" alt="${movie.title}">
+              <p>${movie.year}</p>
 
-                <button>Eliminar</button>
-              </article>
-            `
-          }).join('')
+              <button>Eliminar</button>
+            </article>
+          `
+        }).join('')
 
-          document.querySelector('main').innerHTML = html
+        document.querySelector('main').innerHTML = html
 
-          // Escucho los cliks del documento
-          document.addEventListener('click', e => {
-            // Si el objetivo coincide con el boton se mete en la condición
-            if (e.target.matches('button')) {
-              // El articulo se instancia al que esté mas cerca al click
-              const article = e.target.closest('article')
-              // Coge el id del articulo
-              const id = article.dataset.id
+        document.addEventListener('click', e => {
+          if (e.target.matches('button')) {
+            const article = e.target.closest('article')
+            const id = article.dataset.id
 
-              // Realiza el fetch para borrar la pelicula
-              fetch(`http://localhost:1234/movies/${id}`, { method: 'DELETE' })
-                .then(res => {
-                  if (res.ok) {
-                    article.remove()
-                  }
-                })
+            fetch(`http://localhost:1234/movies/${id}`, {
+              method: 'DELETE'
+            })
+              .then(res => {
+                if (res.ok) {
+                  article.remove()
+                }
+              })
             }
-          })
+          
         })
+      })
   </script>
 </head>
 <body>

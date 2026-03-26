@@ -1,26 +1,20 @@
-import express, { json } from 'express'
-import { moviesRouter } from './routes/movies.js'
+import express, { json } from 'express' // require -> commonJS
+import { createMovieRouter } from './routes/movies.js'
 import { corsMiddleware } from './middlewares/cors.js'
+import 'dotenv/config'
 
-// Manera de importar un archivo JSON con EcmaScript Modules
-// import fs from 'node:fs'
-// const movies = JSON.parse(fs.readFileSync('./movies.json', 'utf-8'))
+// después
+export const createApp = ({ movieModel }) => {
+  const app = express()
+  app.use(json())
+  app.use(corsMiddleware())
+  app.disable('x-powered-by')
 
-const app = express()
-// Para que funcionalidades como la asignación del body a los valores json en el post, tenemos que recurrir al middleware dado en el archivo 3.express.js de clase-2
-app.use(json())
-app.use(corsMiddleware())
+  app.use('/movies', createMovieRouter({ movieModel }))
 
-// Deshabilitar el header X-Powered-By
-app.disable('x-powered-by')
+  const PORT = process.env.PORT ?? 1234
 
-// Cuando se obtenga la url /movies, cogerá el archivo movies.js con moviesRouter y hará la función de la ruta que coincida
-app.use('/movies', moviesRouter)
-
-// Puerto
-const PORT = process.env.PORT ?? 1234
-
-// Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`Server listen on http://localhost:${PORT}`)
-})
+  app.listen(PORT, () => {
+    console.log(`server listening on port http://localhost:${PORT}`)
+  })
+}
